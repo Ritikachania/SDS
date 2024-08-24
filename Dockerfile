@@ -1,25 +1,20 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.8-slim
 
-# Set environment variables to prevent .pyc files and ensure logs are output immediately
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements.txt file to the container at /app
-COPY requirements.txt /app/
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install the Python dependencies specified in requirements.txt
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire Django project to the container
-COPY . /app/
-
-# Open port 8000 for serving the Django app
+# Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Define environment variable for Django settings
+ENV DJANGO_SETTINGS_MODULE=student_management_system.settings
 
+# Run the command to start the Django development server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
