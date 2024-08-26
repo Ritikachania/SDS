@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/Ritikachania/SDS.git',
+                git url: 'https://github.com/Ritikachania/SDS.git', branch: 'master'
             }
         }
 
