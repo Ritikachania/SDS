@@ -1,20 +1,21 @@
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim
+FROM python:3.9-slim
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy only requirements first to leverage Docker cache
+COPY requirements.txt /app/
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && pip install --no-cache-dir -r requirements.txt \
+    && rm -rf /var/lib/apt/lists/*
 
-# Make port 8000 available to the world outside this container
-EXPOSE 8000
+# Copy the rest of the application code
+COPY . /app/
 
-# Define environment variable for Django settings
-ENV DJANGO_SETTINGS_MODULE=student_management_system.settings
+# Run the application
+CMD ["python", "manage.py", "runserver"]
 
-# Run the command to start the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
