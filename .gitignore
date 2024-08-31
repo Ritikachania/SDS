@@ -1,1 +1,55 @@
 terraform/.terraform/
+# Python-related
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Virtual Environment
+venv/
+myenv/
+.env
+
+# Docker
+*.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
+
+# Logs and Database
+*.log
+*.sqlite3
+
+# IDE and Editor Files
+.idea/
+*.suo
+*.ntvs_analysis.dat
+*.ncb
+*.swp
+*.swo
+*.vscode/
+*.project
+*.classpath
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Miscellaneous
+*.tgz
+*.zip
+*.tar.gz
+
+
+# Others (add any other files or directories specific to your project)
