@@ -29,15 +29,15 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-            steps {
-                script {
-                    // Log in to Docker Hub and push the image
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
-                        sh 'docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} $DOCKER_HUB_USERNAME/${DOCKER_IMAGE}:${DOCKER_TAG}'
-                        sh 'docker push $DOCKER_HUB_USERNAME/${DOCKER_IMAGE}:${DOCKER_TAG}'
-                    }
+    steps {
+        script {
+            // Log in to Docker Hub and push the image
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
+                sh 'docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} $DOCKER_HUB_USERNAME/${DOCKER_IMAGE}:${DOCKER_TAG}'
+                sh 'docker push $DOCKER_HUB_USERNAME/${DOCKER_IMAGE}:${DOCKER_TAG}'
                 }
+              }
             }
         }
 
