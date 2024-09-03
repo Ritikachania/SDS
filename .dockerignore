@@ -1,17 +1,12 @@
-# Ignore node modules directory
-node_modules
-
-# Ignore Python cache
-__pycache__/
-
-# Ignore logs and temp files
+.git
+.gitignore
+*.md
 *.log
-*.tmp
-
-# Ignore environment files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+node_modules
+.vscode
 .env
-
-# Ignore IDE specific files
-.vscode/
-.idea/
-
+.DS_Store
