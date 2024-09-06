@@ -1,12 +1,31 @@
+# Git metadata
 .git
-.gitignore
+
+# Ignore all markdown files and logs
 *.md
 *.log
+
+# Python cache and compiled files
 __pycache__
 *.pyc
 *.pyo
 *.pyd
+
+# Node.js dependencies
 node_modules
+
+# IDE/editor specific files
 .vscode
+
+# Environment files
 .env
+
+# macOS specific files
 .DS_Store
+
+# Directories and files that might be large or unnecessary for Docker build
+media/
+static/
+terraform/
+myenv/
+venv/
