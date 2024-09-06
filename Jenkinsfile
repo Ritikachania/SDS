@@ -6,7 +6,7 @@ pipeline {
         DOCKER_TAG = 'latest'           // Tag for the Docker image
         REGISTRY_CREDENTIALS = 'docker-hub-credentials' // Credentials for Docker Hub
         GIT_CREDENTIALS = 'git-credentials-id' // Credentials for GitHub
-        EC2_HOST = '13.51.174.214' // Your EC2 instance public IP
+        EC2_HOST = '16.170.98.178' // Your EC2 instance public IP
         EC2_KEY_PATH = '/var/lib/jenkins/.ssh/id_rsa' // Path to your EC2 private key on Jenkins server
         EC2_DEPLOY_PATH = '/home/ec2-user/my-django-app' // Path on EC2 instance
     }
