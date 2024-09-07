@@ -8,7 +8,7 @@ pipeline {
         GIT_CREDENTIALS = 'git-credentials-id' // Credentials for GitHub
         EC2_HOST = '16.16.183.44' // Your EC2 instance public IP
         EC2_KEY_PATH = '/var/lib/jenkins/.ssh/id_rsa' // Path to your EC2 private key on Jenkins server
-        EC2_DEPLOY_PATH = '/home/ec2-user/my-django-app' // Path on EC2 instance
+        EC2_DEPLOY_PATH = '/home/ec2-user/SDS/SDS' // Path on EC2 instance
     }
 
     stages {
