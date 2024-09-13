@@ -6,7 +6,7 @@ pipeline {
         DOCKER_TAG = 'latest'           // Tag for the Docker image
         REGISTRY_CREDENTIALS = 'docker-hub-credentials' // Credentials for Docker Hub
         GIT_CREDENTIALS = 'git-credentials-id' // Credentials for GitHub
-        EC2_HOST = '16.171.65.249' // Your EC2 instance public IP
+        EC2_HOST = '16.171.115.241' // Your EC2 instance public IP
         EC2_KEY_PATH = '/var/lib/jenkins/.ssh/id_rsa' // Path to your EC2 private key on Jenkins server
         EC2_DEPLOY_PATH = '/home/ec2-user/SDS/SDS' // Path on EC2 instance
     }
@@ -23,7 +23,11 @@ pipeline {
             steps {
                 script {
                     // Build Docker image and tag it
-                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                    try {
+                sh script: "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .", timeout: 60 // Build the Docker image with a timeout of 60 minutes
+            } catch (err) {
+                error "Docker build failed: ${err}" // Log the error and fail the pipeline
+            }
                 }
             }
         }
