@@ -22,12 +22,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image and tag it
-                    try {
-                sh script: "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .", timeout: 60 // Build the Docker image with a timeout of 60 minutes
-            } catch (err) {
-                error "Docker build failed: ${err}" // Log the error and fail the pipeline
-            }
+                    retry(3) {
+                        try {
+                            sh script: "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .", returnStatus: true
+                        } catch (err) {
+                            error "Docker build failed: ${err}"
+                        }
+                    }
                 }
             }
         }
